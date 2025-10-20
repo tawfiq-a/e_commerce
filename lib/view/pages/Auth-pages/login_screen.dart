@@ -83,7 +83,9 @@ final  TextEditingController _emailCtrl=TextEditingController();
               ),
               SizedBox(height: 80,),
 
-              CustomButton(lebel: "Login",onPressed: (){},),
+              CustomButton(lebel: "Login",onPressed: (){
+                Get.offAllNamed("/main_view");
+              },),
 
               SizedBox(height: 40,),
 

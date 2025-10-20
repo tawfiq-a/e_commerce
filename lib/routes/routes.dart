@@ -4,6 +4,7 @@ import '../view/pages/Auth-pages/forget_pass.dart';
 import '../view/pages/Auth-pages/login_screen.dart';
 import '../view/pages/Auth-pages/new_pass.dart';
 import '../view/pages/Auth-pages/sign_up.dart';
+import '../view/pages/mainPages/main_view.dart';
 import '../view/pages/splash/splash_screen.dart';
 
 class Routes{
@@ -13,6 +14,7 @@ class Routes{
   static String forgetPass = "/forget_pass";
   static String varifyCode = "/varify_code";
   static String newPass = "/new_pass";
+  static String mainView = "/main_view";
 
 }
 // Map<String,WidgetBuilder> pages={
@@ -28,4 +30,5 @@ List<GetPage> pages=[
   GetPage(name: Routes.forgetPass, page: ()=>ForgetPass()),
   GetPage(name: Routes.varifyCode, page: ()=>VarifyCode()),
   GetPage(name: Routes.newPass, page: ()=>NewPass()),
+  GetPage(name: Routes.mainView, page: ()=>MainView()),
 ];
