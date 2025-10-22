@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../controller/main_controller.dart';
+import '../../base/custom_drawer.dart';
+
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //
     final MainController controller = Get.put(MainController());
 
-    // Get.put(MainController());
+
+    const double iconSize = 28.0;
 
     return Scaffold(
-      // Obx: selectedIndex পরিবর্তন হলে স্ক্রিন পরিবর্তন হবে
+      drawer: CustomDrawer(),
+      key: scaffoldKey,
+      drawerScrimColor: Color(0xff1D1E20).withOpacity(0.40),
+
+
       body: Obx(
             () => IndexedStack(
           index: controller.selectedIndex.value,
@@ -25,31 +33,63 @@ class MainView extends StatelessWidget {
       bottomNavigationBar: Obx(
             () => BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
+
+
           selectedItemColor: Colors.purple.shade400,
           unselectedItemColor: Colors.grey.shade400,
-          showSelectedLabels: true, // লেবেল দেখাতে চাইলে true করুন
+          showSelectedLabels: true,
           showUnselectedLabels: false,
 
           currentIndex: controller.selectedIndex.value,
-          onTap: controller.changeTabIndex, // controller-এর পদ্ধতি কল করা হচ্ছে
+          onTap: controller.changeTabIndex,
 
-          items: const <BottomNavigationBarItem>[
-            // Home Tab (Index 0)
+          items: <BottomNavigationBarItem>[
+
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
+              icon: SvgPicture.asset(
+                'assets/icons/home.svg',
+                height: iconSize,
+                width: iconSize,
+                color: Colors.grey.shade400,
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/icons/home.svg',
+                height: iconSize,
+                width: iconSize,
+                color: Colors.purple.shade400,
+              ),
               label: 'Home',
             ),
-            // Wishlist Tab (Index 1)
+
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
-              activeIcon: Icon(Icons.favorite),
+              icon: SvgPicture.asset(
+                'assets/icons/fav.svg',
+                height: iconSize,
+                width: iconSize,
+                color: Colors.grey.shade400,
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/icons/fav.svg',
+                height: iconSize,
+                width: iconSize,
+                color: Colors.purple.shade400,
+              ),
               label: 'Wishlist',
             ),
             // Cart Tab (Index 2)
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
-              activeIcon: Icon(Icons.shopping_cart),
+              icon: SvgPicture.asset(
+                'assets/icons/cart.svg',
+                height: iconSize,
+                width: iconSize,
+                color: Colors.grey.shade400,
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/icons/cart.svg',
+                height: iconSize,
+                width: iconSize,
+                color: Colors.purple.shade400,
+              ),
               label: 'Cart',
             ),
           ],
@@ -57,4 +97,40 @@ class MainView extends StatelessWidget {
       ),
     );
   }
+  // _customDrawer() {
+  //   return Drawer(
+  //     child: ListView(
+  //       padding: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+  //       children: [
+  //         Column(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+  //             CircleAvatar(
+  //               radius: 20,
+  //               backgroundColor: Color(0xffF5F6FA),
+  //               child: SvgPicture.asset("assets/icons/menu.svg"),
+  //             ),
+  //             SizedBox(height: 30),
+  //             Row(
+  //               children: [
+  //                 CircleAvatar(
+  //                   radius: 10,
+  //                   backgroundColor: Color(0xffF5F6FA),
+  //                   child: Image.asset("assets/images/profile.png",color: Colors.purpleAccent,),
+  //                 ),
+  //                 SizedBox(width: 20,),
+  //                 Expanded(child: Text("Zakaria")),
+  //               ],
+  //             ),
+  //
+  //             ListTile(
+  //               leading: Icon(Icons.person),
+  //               title: Text("Account INFO"),
+  //             )
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
