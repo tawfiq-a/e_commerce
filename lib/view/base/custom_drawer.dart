@@ -74,10 +74,10 @@ class CustomDrawer extends StatelessWidget {
 
 
           _buildDrawerItem(
-            icon: Icons.access_time,
+            icon: Icons.info_outline,
             text: 'Account Information',
             onTap: () {
-              Navigator.pop(context);
+              Get.toNamed('/user_info');
 
             },
           ),
@@ -85,21 +85,22 @@ class CustomDrawer extends StatelessWidget {
             icon: Icons.shopping_bag_outlined, // Replaced with a bag icon for Order
             text: 'Order',
             onTap: () {
-              Navigator.pop(context);
+              Get.toNamed('/order_view');
             },
           ),
           _buildDrawerItem(
-            icon: Icons.mail_outline, // Replaced with an envelope icon
+            icon: Icons.credit_card_outlined, // Replaced with an envelope icon
             text: 'My Cards',
             onTap: () {
-              Navigator.pop(context);
+              Get.toNamed('/payment_screen');
             },
           ),
           _buildDrawerItem(
             icon: Icons.settings_outlined,
             text: 'Settings',
             onTap: () {
-              Navigator.pop(context);
+              Get.toNamed('/settings_view');
+
             },
           ),
 
@@ -111,7 +112,24 @@ class CustomDrawer extends StatelessWidget {
             text: 'Logout                 ',
             color: Colors.red.shade400, // Set text and icon color to red
             onTap: () {
-              Get.offAllNamed('/login');();
+              Get.defaultDialog(
+                  title: 'Log Out',
+                  backgroundColor: Colors.white,
+                  titleStyle: TextStyle(color: Colors.red),
+                  middleText: 'Are you sure  want to Logout?',
+
+                  actions: [
+                    TextButton(onPressed: (){
+                      Get.offAllNamed('/login_screen');
+                        }, child: const Text("Yes",
+                      style: TextStyle(color: Colors.red),)),
+                    TextButton(onPressed: (){
+                      Get.back();
+                    }, child: const Text("No",
+                      style: TextStyle(color: Colors.red),)),
+                  ]
+              );
+
               // Handle logout logic
             },
           ),

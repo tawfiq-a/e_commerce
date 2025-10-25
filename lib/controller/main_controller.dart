@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../view/pages/Cart_view/cart_view.dart';
 import '../view/pages/mainPages/home_view.dart';
+import '../view/pages/mainPages/wish_list.dart';
 
 
 class MainController extends GetxController {
@@ -9,7 +11,7 @@ class MainController extends GetxController {
 
 
   final List<Widget> screens = [
-    const HomeView(), // 0
+     HomeView(), // 0
     const WishlistView(), // 1
     const CartView(), // 2
   ];
@@ -23,14 +25,14 @@ class MainController extends GetxController {
 }
 
 
-class WishlistView extends StatelessWidget {
-  const WishlistView({super.key});
-  @override
-  Widget build(BuildContext context) => const Center(child: Text('Wishlist Page', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)));
-}
+// class WishlistView extends StatelessWidget {
+//   const WishlistView({super.key});
+//   @override
+//   Widget build(BuildContext context) => const Center(child: Text('Wishlist Page', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)));
+// }
 
-class CartView extends StatelessWidget {
-  const CartView({super.key});
-  @override
-  Widget build(BuildContext context) => const Center(child: Text('Cart Page', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)));
-}
+// class CartView extends StatelessWidget {
+//   const CartView({super.key});
+//   @override
+//   Widget build(BuildContext context) => const Center(child: Text('Cart Page', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)));
+// }

@@ -7,7 +7,7 @@ import '../../base/custom_button.dart';
 
 class ProductDetailView extends StatelessWidget {
   ProductDetailView({super.key});
-  final controller = Get.put(ProductController());
+  final controller = Get.put(ProductDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +23,33 @@ class ProductDetailView extends StatelessWidget {
 
           Stack(
         children: [
+
           // Main Scrollable Content
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 1. Image Header Section
-                _buildImageHeader(imagePath),
+                Stack(
+                    children:[
+                  _buildImageHeader(imagePath),
+                      Positioned(
+                        top: 50,
+                        left: 20,
+                          child: InkWell(
+                            onTap: (){
+                              Get.back();
+                            },
+                              child: CircleAvatar(
+
+
+                                backgroundColor: Colors.white,
+                                child: Icon(Icons.arrow_back,color: Colors.black,size: 20,),
+                              ),
+                          ),
+                      ),
+                    ]
+                ),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -99,29 +119,29 @@ class ProductDetailView extends StatelessWidget {
 
                       const SizedBox(height: 50), // Space for the floating total/button
 
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Total Price ", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w600)),
-                                Text("Include VAT,SD ", style: TextStyle(fontSize: 18, color: Colors.black38, fontWeight: FontWeight.w600)),
-
-
-                              ],
-                            ),
-                            Text("\$125", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w600)),
-
-                          ]
-
-                      ),
-                      const SizedBox(height: 25), // Space for the floating total/button
-
-                      CustomButton(lebel: "Add to Cart",onPressed: (){
-                        Get.offAllNamed("/main_view");
-                      },),
-                      const SizedBox(height: 30), // Space for the floating total/button
+                      // Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       Column(
+                      //         crossAxisAlignment: CrossAxisAlignment.start,
+                      //         children: [
+                      //           Text("Total Price ", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w600)),
+                      //           Text("Include VAT,SD ", style: TextStyle(fontSize: 18, color: Colors.black38, fontWeight: FontWeight.w600)),
+                      //
+                      //
+                      //         ],
+                      //       ),
+                      //       Text("\$125", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w600)),
+                      //
+                      //     ]
+                      //
+                      // ),
+                      // const SizedBox(height: 25), // Space for the floating total/button
+                      //
+                      // CustomButton(lebel: "Add to Cart",onPressed: (){
+                      //   Get.offAllNamed("/cart_view");
+                      // },),
+                      const SizedBox(height: 100), // Space for the floating total/button
 
 
 
@@ -138,7 +158,7 @@ class ProductDetailView extends StatelessWidget {
 
 
           // 7. Floating Total Price and Button
-          // _buildFloatingFooter(controller),
+          _buildFloatingFooter(controller),
         ],
       ),
     );
@@ -166,7 +186,7 @@ class ProductDetailView extends StatelessWidget {
   }
 
   // 2. Product Name and Price Row
-  Widget _buildNamePriceRow(ProductController controller) {
+  Widget _buildNamePriceRow(ProductDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -235,7 +255,7 @@ class ProductDetailView extends StatelessWidget {
   }
 
   // 4. Size Selector (Reactive)
-  Widget _buildSizeSelector(ProductController controller) {
+  Widget _buildSizeSelector(ProductDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -375,7 +395,7 @@ class ProductDetailView extends StatelessWidget {
   }
 
   // 7. Floating Footer (Total Price and Button)
-  Widget _buildFloatingFooter(ProductController controller) {
+  Widget _buildFloatingFooter(ProductDetailController controller) {
     // The purple color from the image is approximately #9C27B0
     const Color purpleColor = Color(0xFF9C27B0);
 
@@ -384,8 +404,8 @@ class ProductDetailView extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        height: 100, // Fixed height for a distinct footer
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+        height: 130, // Fixed height for a distinct footer
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -397,41 +417,35 @@ class ProductDetailView extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            // Total Price Column
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Total Price', style: TextStyle(fontSize: 14, color: Colors.grey)),
+                Column(
+                  children: [
+                    Text('Total Price', style: TextStyle(fontSize: 20, color: Colors.black87)),
+                    Text("Include VAT,SD ", style: TextStyle(fontSize: 12, color: Colors.black38, fontWeight: FontWeight.w600)),
+                  ],
+                ),
                 Obx(() => Text(
                   '\$${controller.totalPrice.toStringAsFixed(0)}', // Display as $125
                   style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 )),
+                // Total Price Column
+
+                // Add to Cart Button (Reactive)
+
               ],
             ),
+            const SizedBox(height: 10),
 
-            // Add to Cart Button (Reactive)
-            Obx(() => ElevatedButton(
-              onPressed: controller.addToCart,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: purpleColor,
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              ),
-              child: controller.isLoading.value
-                  ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)
-              )
-                  : const Text(
-                'Add to Cart',
-                style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
-              ),
-            )),
+            CustomButton(
+                  lebel: "Add to Cart",
+                  onPressed: () {
+                    Get.offAllNamed("/cart_view");
+                  },
+                ),
           ],
         ),
       ),

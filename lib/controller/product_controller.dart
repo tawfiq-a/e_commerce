@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-class ProductController extends GetxController {
+class ProductDetailController extends GetxController {
   // State variables (Observables)
   final selectedSize = 'M'.obs;
   final basePrice = 120.0.obs;
