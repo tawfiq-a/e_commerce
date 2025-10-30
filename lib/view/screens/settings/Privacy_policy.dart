@@ -1,4 +1,5 @@
-import 'package:e_commerce/view/pages/settings/termsOfServices.dart';
+
+import 'package:e_commerce/view/screens/settings/termsOfServices.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

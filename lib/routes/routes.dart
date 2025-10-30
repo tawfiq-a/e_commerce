@@ -1,29 +1,31 @@
-import 'package:e_commerce/view/pages/Auth-pages/varify_code.dart';
+
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../view/base/custom_drawer.dart';
-import '../view/pages/Auth-pages/forget_pass.dart';
-import '../view/pages/Auth-pages/login_screen.dart';
-import '../view/pages/Auth-pages/new_pass.dart';
-import '../view/pages/Auth-pages/sign_up.dart';
-import '../view/pages/Cart_view/cart_view.dart';
-import '../view/pages/address/address_view.dart';
-import '../view/pages/mainPages/home_view.dart';
-import '../view/pages/mainPages/main_view.dart';
-import '../view/pages/mainPages/wish_list.dart';
-import '../view/pages/order/order_confirm.dart';
-import '../view/pages/order/order_view.dart';
-import '../view/pages/payment/add_card_view.dart';
-import '../view/pages/payment/payment_screen.dart';
-import '../view/pages/product_view/product_view.dart';
-import '../view/pages/profile/edit_profile.dart';
-import '../view/pages/profile/user_info.dart';
-import '../view/pages/review/add_review.dart';
-import '../view/pages/review/reviews_view.dart';
-import '../view/pages/settings/Privacy_policy.dart';
-import '../view/pages/settings/about_us.dart';
-import '../view/pages/settings/settings_view.dart';
-import '../view/pages/settings/termsOfServices.dart';
-import '../view/pages/splash/splash_screen.dart';
+
+import '../view/screens/Auth-pages/forget_pass.dart';
+import '../view/screens/Auth-pages/login_screen.dart';
+import '../view/screens/Auth-pages/new_pass.dart';
+import '../view/screens/Auth-pages/sign_up.dart';
+import '../view/screens/Auth-pages/varify_code.dart';
+import '../view/screens/Cart_view/cart_view.dart';
+import '../view/screens/address/address_view.dart';
+import '../view/screens/mainPages/home_view.dart';
+import '../view/screens/mainPages/main_view.dart';
+import '../view/screens/mainPages/wish_list.dart';
+import '../view/screens/order/order_confirm.dart';
+import '../view/screens/order/order_view.dart';
+import '../view/screens/payment/add_card_view.dart';
+import '../view/screens/payment/payment_screen.dart';
+import '../view/screens/product_view/product_view.dart';
+import '../view/screens/profile/edit_profile.dart';
+import '../view/screens/profile/user_info.dart';
+import '../view/screens/review/add_review.dart';
+import '../view/screens/review/reviews_view.dart';
+import '../view/screens/settings/Privacy_policy.dart';
+import '../view/screens/settings/about_us.dart';
+import '../view/screens/settings/settings_view.dart';
+import '../view/screens/settings/termsOfServices.dart';
+import '../view/screens/splash/splash_screen.dart';
 
 class Routes{
   static String splashScreen = "/";
@@ -57,7 +59,7 @@ class Routes{
 
 
 }
-// Map<String,WidgetBuilder> pages={
+// Map<String,WidgetBuilder> screens={
 //   Routes.splashScreen:(_)=>SplashScreen(),
 //   Routes.loginScreen:(_)=>LoginScreen(),
 //   Routes.signUp:(_)=>SignUp(),
@@ -84,7 +86,7 @@ List<GetPage> pages=[
   GetPage(name: Routes.orderConfirm, page: ()=>OrderConfirm()),
   GetPage(name: Routes.orderView, page: ()=>OrderView()),
   GetPage(name: Routes.userInfo, page: ()=>UserInfo()),
-  GetPage(name: Routes.editProfile, page: ()=>EditProfile()),
+  GetPage(name: Routes.editProfile, page: ()=> EditProfile()),
   GetPage(name: Routes.settingsView, page: ()=>SettingsView()),
   GetPage(name: Routes.termsOfService, page: ()=>Termsofservices()),
   GetPage(name: Routes.privacyPolicy, page: ()=>PrivacyPolicy()),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../view/pages/Cart_view/cart_view.dart';
-import '../view/pages/mainPages/home_view.dart';
-import '../view/pages/mainPages/wish_list.dart';
+import '../view/screens/Cart_view/cart_view.dart';
+import '../view/screens/mainPages/home_view.dart';
+import '../view/screens/mainPages/wish_list.dart';
 
 
 class MainController extends GetxController {

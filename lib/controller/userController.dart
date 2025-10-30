@@ -1,8 +1,7 @@
-// lib/controllers/user_controller.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../view/pages/profile/edit_profile.dart';
+import '../view/screens/profile/edit_profile.dart';
 
 class UserController extends GetxController {
   // --- Reactive User Data ---
@@ -15,7 +14,7 @@ class UserController extends GetxController {
   final profileImageUrl = 'assets/images/user_profile.png'.obs;
 
   // --- State to control UI transition ---
-  final isEditing = false.obs; // 🔑 Controlling the state
+  final isEditing = false.obs;
 
   // --- TextEditingControllers for the Edit Form ---
   late TextEditingController nameController;

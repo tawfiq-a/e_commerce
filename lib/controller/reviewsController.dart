@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
-import '../view/pages/review/add_review.dart';
+
+import '../view/screens/review/add_review.dart';
 
 // Dummy Review Model
 class Review {

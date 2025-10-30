@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFromField extends StatelessWidget {
-  CustomTextFromField({
+  const CustomTextFromField({
     super.key,
     this.controller,
     this.hintText,
@@ -13,7 +13,7 @@ class CustomTextFromField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
-  bool obscureText;
+  final bool obscureText;
   final String? Function(String?)? validator;
 
   @override

@@ -251,7 +251,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../controller/wishListController.dart';
-import '../../../helpers/brand_chip.dart';
+import '../../base/brand_chip.dart';
 import '../../../helpers/section_header.dart';
 import '../../base/custom_drawer.dart';
 import 'main_view.dart';
