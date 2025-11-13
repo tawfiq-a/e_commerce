@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/cartController.dart';
-// import 'cart_controller.dart';
+
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -73,7 +73,7 @@ class CartView extends StatelessWidget {
             ),
           ),
 
-          // --- Checkout Button (Bottom Fixed Area) ---
+          // --- Checkout Button  ---
           _buildCheckoutFooter(controller, purpleColor),
         ],
       )),
@@ -83,8 +83,7 @@ class CartView extends StatelessWidget {
   // --- Widget Builders ---
 
   Widget _buildCartItemCard(CartItem item, CartController controller) {
-    // Obx here listens only to the item's quantity change, but the main build
-    // method's Obx handles removal/addition of items to the list.
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: Container(
@@ -149,7 +148,7 @@ class CartView extends StatelessWidget {
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
                             ),
-                            // Quantity Value (Reactive)
+                            // Quantity Value
                             Obx(() => Text(
                               '${item.quantity.value}',
                               style: const TextStyle(fontWeight: FontWeight.bold),
@@ -289,13 +288,13 @@ class CartView extends StatelessWidget {
         const Text('Order Info', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         const SizedBox(height: 10),
 
-        // Subtotal (Reactive)
+        // Subtotal
         Obx(() => _buildSummaryRow('Subtotal', controller.subtotal)),
 
-        // Shipping Cost (Reactive)
+        // Shipping Cost
         Obx(() => _buildSummaryRow('Shipping cost', controller.shippingCost.value)),
 
-        // Total (Reactive)
+        // Total
         const Divider(height: 20, thickness: 1, color: Colors.grey),
         Obx(() => Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class AddReviewController extends GetxController {
-  // --- Reactive State ---
-  final rating = 0.0.obs; // Tracks the star rating slider value
+
+  final rating = 0.0.obs;
   final isLoading = false.obs;
 
   // --- Input Controllers ---
@@ -12,7 +12,7 @@ class AddReviewController extends GetxController {
 
   @override
   void onClose() {
-    // Dispose controllers to prevent memory leaks
+
     nameController.dispose();
     experienceController.dispose();
     super.onClose();
@@ -27,7 +27,6 @@ class AddReviewController extends GetxController {
 
   // Method to handle form submission
   void submitReview() async {
-    // Simple validation
     if (nameController.text.isEmpty || experienceController.text.isEmpty) {
       Get.snackbar('Error', 'Please fill in your name and experience.', snackPosition: SnackPosition.BOTTOM);
       return;
@@ -45,7 +44,7 @@ class AddReviewController extends GetxController {
 
     isLoading.value = false;
 
-    // Show success message and navigate back
+
     Get.snackbar(
       'Success!',
       'Thank you for your ${rating.value} star review!',
@@ -53,7 +52,7 @@ class AddReviewController extends GetxController {
       backgroundColor: Colors.purple,
       colorText: Colors.white,
     );
-    // You would typically navigate back to the Reviews list after successful submission
+
     // Get.back();
   }
 }

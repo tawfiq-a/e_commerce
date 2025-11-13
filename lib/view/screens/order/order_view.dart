@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// --- 1. Data Models (For Clean Code) ---
+// --- Data Models (For Clean Code) ---
 
 class OrderItem {
   final String id;
@@ -25,13 +25,11 @@ class OrderItem {
 
 enum OrderStatus { completed, toReceive }
 
-// --- 2. Controller for State Management (If needed later) ---
-// We'll use GetX, but for this simple tab UI, we can keep the logic local.
-// If you need filtering/fetching logic, you'd put it here.
+
 class OrderController extends GetxController {
-  // Mock data for both tabs
+
   final List<OrderItem> allOrders = const [
-    // Completed Orders (Screen 32)
+
     OrderItem(
       id: 'c1',
       name: "Men's Tie-Dye T-Shirt",

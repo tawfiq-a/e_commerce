@@ -266,13 +266,13 @@ GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 class HomeView extends StatelessWidget {
      HomeView({super.key});
 
-  // 3. Instantiate the WishlistController using Get.put
+
   final WishlistController wishlistController = Get.put(WishlistController());
 
-  // 4. Define product data using the Product model
+  // Define product data using the Product model
   final List<Product> newArrivalProducts = const [
     Product(
-      id: 'p1', // Important: Unique ID for each product
+      id: 'p1',
       name: 'Nike Sportswear Club \n Fleece',
       price: '\$89',
       image: Image(image: AssetImage("assets/images/as.png"), height: 210, width: 170, fit: BoxFit.fill),
@@ -328,7 +328,7 @@ class HomeView extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // --- Search Bar (Existing Code)
+              // --- Search Bar
               Row(
                 children: [
                   Expanded(
@@ -375,7 +375,7 @@ class HomeView extends StatelessWidget {
               SectionHeader(title: 'New Arrival', subTitle: 'View All', onTap: () {}),
               const SizedBox(height: 15),
 
-              // 5. Product Grid View - Switched to GridView.builder
+              // Product Grid View - Switched to GridView.builder
               GridView.builder(
                 itemCount: newArrivalProducts.length,
                 shrinkWrap: true,
@@ -443,7 +443,7 @@ class HomeView extends StatelessWidget {
 // ------------------------------------------------------------------
 
 class _ProductCard extends StatelessWidget {
-  // 6. Update properties to use Product model and Controller
+  // Update properties to use Product model and Controller
   final Product product;
   final WishlistController wishlistController;
 
@@ -461,7 +461,7 @@ class _ProductCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.toNamed("/product_view"); // Card tap still navigates to product detail
+          Get.toNamed("/product_view");
         },
 
         child: Column(
@@ -476,11 +476,11 @@ class _ProductCard extends StatelessWidget {
                     child: product.image, // Use image from the Product model
                   ),
 
-                  // 7. Heart Icon (Favorite Button) - The Key Change
+                  // Heart Icon (Favorite Button)
                   Positioned(
                     top: 20,
                     right: 20,
-                    // Use Obx to reactively listen to changes in the wishlist
+
                     child: Obx(() {
                       final isFavorite = wishlistController.isProductInWishlist(product);
                       return GestureDetector(

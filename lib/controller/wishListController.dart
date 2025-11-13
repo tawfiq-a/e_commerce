@@ -1,10 +1,10 @@
-// lib/controllers/wishlist_controller.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../models/product.dart'; // Ensure the path is correct
+import '../models/product.dart';
 
 class WishlistController extends GetxController {
-  // Use RxList for reactive state management
+
   final RxList<Product> wishlistItems = <Product>[].obs;
 
   void toggleWishlist(Product product) {

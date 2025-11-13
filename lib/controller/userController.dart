@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../view/screens/profile/edit_profile.dart';
 
 class UserController extends GetxController {
-  // --- Reactive User Data ---
+
   final name = 'Zakaria Rabby'.obs;
   final email = 'name@example.com'.obs;
   final phoneNumber = '0123654789'.obs;
@@ -13,7 +13,7 @@ class UserController extends GetxController {
   final address = 'Chhatak, Sunamgonj 12/8AB'.obs;
   final profileImageUrl = 'assets/images/user_profile.png'.obs;
 
-  // --- State to control UI transition ---
+
   final isEditing = false.obs;
 
   // --- TextEditingControllers for the Edit Form ---
@@ -58,7 +58,7 @@ class UserController extends GetxController {
   }
 
   void saveChanges() {
-    // 1. Update reactive data from form controllers
+    // Update reactive data from form controllers
     name.value = nameController.text;
     email.value = emailController.text;
     phoneNumber.value = phoneController.text;
@@ -66,7 +66,7 @@ class UserController extends GetxController {
     city.value = cityController.text;
     address.value = addressController.text;
 
-    // 2. Show feedback and navigate back to read-only view
+
     Get.back(); // Close the edit screen
     Get.snackbar('Success', 'Profile information saved!',
         backgroundColor: Colors.green.shade100);

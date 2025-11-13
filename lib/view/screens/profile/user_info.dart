@@ -1,18 +1,18 @@
-// lib/presentation/account/account_information_view.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import '../../../controllers/user_controller.dart'; // Apnar controller path
+
 
 class UserInfo extends StatelessWidget {
   const UserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Controller Find/Initialization (Assuming it's ready)
+    // Controller Find/Initialization
     // final UserController controller = Get.put(UserController());
     final Color primaryColor = const Color(0xFF9386E8);
 
-    // Mock data for display (Replace with actual controller data)
+
     final Map<String, String> userData = {
       'Name': 'Zakaria Rabby',
       'Email': 'name@example.com',
@@ -42,7 +42,7 @@ class UserInfo extends StatelessWidget {
             // --- User Data Fields (Read-Only) ---
             ...userData.entries.map((entry) => _InfoField(
               label: entry.key,
-              value: entry.value, // Replace with controller.RxString.value
+              value: entry.value,
             )).toList(),
 
             const SizedBox(height: 40),
@@ -52,7 +52,7 @@ class UserInfo extends StatelessWidget {
               width: double.infinity,
               height: 55,
               child: ElevatedButton.icon(
-                // onPressed: controller.openEditView, // 🔑 Controller method call
+
                 onPressed: () => Get.toNamed('/edit_profile'),
                 icon: const Icon(Icons.edit_outlined, color: Colors.white),
                 label: const Text(
@@ -116,7 +116,7 @@ class _ProfilePicture extends StatelessWidget {
         child: Image.asset(
           imageUrl,
           fit: BoxFit.cover,
-          // Placeholder icon if the image asset is not found
+
           errorBuilder: (context, error, stackTrace) => const Icon(
             Icons.person,
             size: 60,

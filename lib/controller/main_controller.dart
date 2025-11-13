@@ -6,14 +6,14 @@ import '../view/screens/mainPages/wish_list.dart';
 
 
 class MainController extends GetxController {
-  // 0.obs - Home, 1.obs - Wishlist, 2.obs - Cart
+
   var selectedIndex = 0.obs;
 
 
   final List<Widget> screens = [
-     HomeView(), // 0
-    const WishlistView(), // 1
-    const CartView(), // 2
+     HomeView(),
+    const WishlistView(),
+    const CartView(),
   ];
 
   // tab index change

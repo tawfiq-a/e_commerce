@@ -9,7 +9,7 @@ class CartItem {
   final double price;
   final double tax;
   final String imagePath;
-  final int maxStock; // NEW: Maximum available stock for this item
+  final int maxStock;
   var quantity = 1.obs;
 
   CartItem({
@@ -20,9 +20,9 @@ class CartItem {
     required this.tax,
     required this.imagePath,
     required int initialQuantity,
-    required this.maxStock, // NEW: Required in constructor
+    required this.maxStock,
   }) {
-    // Ensure initial quantity doesn't exceed stock (for safety)
+
     quantity.value = initialQuantity > maxStock ? maxStock : initialQuantity;
   }
 }
@@ -46,7 +46,7 @@ class PaymentMethod {
 
 
 class CartController extends GetxController {
-  // --- Reactive State ---
+
   final cartItems = <CartItem>[].obs;
   final shippingCost = 10.0.obs;
   final selectedAddressIndex = 0.obs;
@@ -84,7 +84,7 @@ class CartController extends GetxController {
         tax: 4.00,
         imagePath: 'assets/images/cart1.png',
         initialQuantity: 1,
-        maxStock: 5, // Stock: 5 (In stock)
+        maxStock: 5,
       ),
       CartItem(
         id: 'T2',
@@ -94,9 +94,9 @@ class CartController extends GetxController {
         tax: 4.00,
         imagePath: 'assets/images/cart2.png',
         initialQuantity: 1,
-        maxStock: 1, // Stock: 1 (Near limit, user can't increment)
+        maxStock: 1,
       ),
-      CartItem( // Example of Out of Stock item
+      CartItem(
         id: 'T3',
         name: "Unisex Hooded Sweatshirt (OOS)",
         size: 'S',
@@ -104,35 +104,35 @@ class CartController extends GetxController {
         tax: 5.00,
         imagePath: 'assets/images/cart1.png',
         initialQuantity: 1,
-        maxStock: 5, // Stock: 0 (Out of Stock)
+        maxStock: 5,
       ),
     ]);
   }
 
-  // --- Computed Values (Rx for automatic update) ---
 
-  // Calculate Subtotal (sum of item prices * quantity)
+
+  // Calculate Subtotal
   double get subtotal => cartItems.fold(
       0.0, (sum, item) => sum + (item.price * item.quantity.value));
 
-  // Calculate Total (subtotal + shipping)
+  // Calculate Total
   double get total => subtotal + shippingCost.value;
 
-  // Calculate Total Tax (sum of item taxes * quantity)
+  // Calculate Total Tax
   double get totalTax => cartItems.fold(
       0.0, (sum, item) => sum + (item.tax * item.quantity.value));
 
 
   // --- Logic Methods ---
 
-  // UPDATED: Check stock before incrementing
+  // Check stock before incrementing
   void incrementQuantity(CartItem item) {
     if (item.quantity.value < item.maxStock) {
       item.quantity.value++;
 
 
     } else {
-      // Show Snackbar if stock limit is reached
+
       Get.snackbar(
         'Stock Limit Reached',
         'You have reached the maximum available stock (${item.maxStock}) for this item.',
@@ -165,7 +165,7 @@ class CartController extends GetxController {
     );
   }
 
-  // NEW: Checks if the cart contains any item that is entirely out of stock (maxStock == 0)
+  // Checks if the cart contains any item that is entirely out of stock (maxStock == 0)
   bool get hasOutOfStockItems => cartItems.any((item) => item.maxStock == 0);
 
   void checkout() {

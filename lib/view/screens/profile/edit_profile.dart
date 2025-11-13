@@ -1,24 +1,24 @@
-// lib/presentation/account/account_information_edit_view.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import '../../../controllers/user_controller.dart'; // Apnar controller path
+
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Controller Find (Assuming it was initialized on the previous screen)
+    // Controller Find
     // final UserController controller = Get.find<UserController>();
     final Color primaryColor = const Color(0xFF9386E8);
 
-    // Mock Controllers for UI design (Replace with actual controller properties)
-    final TextEditingController mockNameController = TextEditingController(text: 'Zakaria Rabby');
-    final TextEditingController mockEmailController = TextEditingController(text: 'name@example.com');
-    final TextEditingController mockPhoneController = TextEditingController(text: '+880 1453-687533');
-    final TextEditingController mockCountryController = TextEditingController(text: 'Bangladesh');
-    final TextEditingController mockCityController = TextEditingController(text: 'Sylhet');
-    final TextEditingController mockAddressController = TextEditingController(text: 'Chhatak, Sunamgonj 12/8AB');
+
+    final TextEditingController NameController = TextEditingController(text: 'Zakaria Rabby');
+    final TextEditingController EmailController = TextEditingController(text: 'name@example.com');
+    final TextEditingController PhoneController = TextEditingController(text: '+880 1453-687533');
+    final TextEditingController CountryController = TextEditingController(text: 'Bangladesh');
+    final TextEditingController CityController = TextEditingController(text: 'Sylhet');
+    final TextEditingController AddressController = TextEditingController(text: 'Chhatak, Sunamgonj 12/8AB');
 
 
     return Scaffold(
@@ -65,13 +65,13 @@ class EditProfile extends StatelessWidget {
 
                   // --- Form Fields ---
                   _LabelText('Name'),
-                  _CustomEditableTextField(hintText: 'Zakaria Rabby', controller: mockNameController),
+                  _CustomEditableTextField(hintText: 'Zakaria Rabby', controller:NameController),
 
                   _LabelText('Email'),
-                  _CustomEditableTextField(hintText: 'name@example.com', controller: mockEmailController, isEmail: true),
+                  _CustomEditableTextField(hintText: 'name@example.com', controller: EmailController, isEmail: true),
 
                   _LabelText('Phone Number'),
-                  _CustomEditableTextField(hintText: '+880 1453-687533', controller: mockPhoneController, keyboardType: TextInputType.phone),
+                  _CustomEditableTextField(hintText: '+880 1453-687533', controller: PhoneController, keyboardType: TextInputType.phone),
 
                   Row(
                     children: [
@@ -80,7 +80,7 @@ class EditProfile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _LabelText('Country'),
-                            _CustomEditableTextField(hintText: 'Bangladesh', controller: mockCountryController),
+                            _CustomEditableTextField(hintText: 'Bangladesh', controller: CountryController),
                           ],
                         ),
                       ),
@@ -90,7 +90,7 @@ class EditProfile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _LabelText('City'),
-                            _CustomEditableTextField(hintText: 'Sylhet', controller: mockCityController),
+                            _CustomEditableTextField(hintText: 'Sylhet', controller: CityController),
                           ],
                         ),
                       ),
@@ -98,7 +98,7 @@ class EditProfile extends StatelessWidget {
                   ),
 
                   _LabelText('Address'),
-                  _CustomEditableTextField(hintText: 'Chhatak, Sunamgonj 12/8AB', controller: mockAddressController),
+                  _CustomEditableTextField(hintText: 'Chhatak, Sunamgonj 12/8AB', controller: AddressController),
 
                   const SizedBox(height: 40),
                 ],
@@ -106,14 +106,14 @@ class EditProfile extends StatelessWidget {
             ),
           ),
 
-          // --- Save Changes Button (Fixed at bottom) ---
+          // --- Save Changes Button  ---
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: SizedBox(
               width: double.infinity,
               height: 55,
               child: ElevatedButton(
-                // onPressed: controller.saveChanges, // 🔑 Controller method call
+
                 onPressed: () => print("Saving changes and returning (Screen 20)"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
@@ -184,9 +184,9 @@ class _CustomEditableTextField extends StatelessWidget {
     );
   }
 }
-// ----------------------------------------------------------------------
 
-// Reusable Profile Picture Widget (Used by both Screen 20 & 21)
+
+// Reusable Profile Picture Widget
 class _ProfilePicture extends StatelessWidget {
   final String imageUrl;
 

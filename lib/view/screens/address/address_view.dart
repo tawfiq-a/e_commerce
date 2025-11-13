@@ -88,7 +88,7 @@ class AddressView extends StatelessWidget {
               ),
             ),
 
-            // --- Save Address Button (Fixed Bottom) ---
+            // --- Save Address Button ---
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: CustomButton(
@@ -107,14 +107,14 @@ class AddressView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Label is slightly above the TextField in the screenshot
+
         Text(
           label,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         const SizedBox(height: 8),
         Container(
-          height: 55, // Fixed height for visual consistency
+          height: 55,
           decoration: BoxDecoration(
             color: Colors.grey.shade100,
             borderRadius: BorderRadius.circular(15),

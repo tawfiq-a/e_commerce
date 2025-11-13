@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/product_controller.dart';
 import '../../base/custom_button.dart';
-// import 'product_controller.dart'; // Assume the controller is in the same folder
+
 
 class ProductDetailView extends StatelessWidget {
   ProductDetailView({super.key});
@@ -29,7 +29,7 @@ class ProductDetailView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // 1. Image Header Section
+                // Image Header Section
                 Stack(
                     children:[
                   _buildImageHeader(imagePath),
@@ -58,7 +58,7 @@ class ProductDetailView extends StatelessWidget {
                     children: [
                       const SizedBox(height: 10),
 
-                      // 2. Product Name and Price Row
+                      //  Product Name and Price Row
                       _buildNamePriceRow(controller),
 
                       const SizedBox(height: 15),
@@ -69,7 +69,7 @@ class ProductDetailView extends StatelessWidget {
                           Expanded(
                             child: Image(
                               image: AssetImage("assets/images/style1.png"),
-                              fit: BoxFit.cover, // Good practice for images
+                              fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(width: 10),
@@ -77,7 +77,7 @@ class ProductDetailView extends StatelessWidget {
                           Expanded(
                             child: Image(
                               image: AssetImage("assets/images/style2.png"),
-                              fit: BoxFit.cover, // Good practice for images
+                              fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(width: 10),
@@ -85,7 +85,7 @@ class ProductDetailView extends StatelessWidget {
                           Expanded(
                             child: Image(
                               image: AssetImage("assets/images/style3.png"),
-                              fit: BoxFit.cover, // Good practice for images
+                              fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(width: 10),
@@ -93,31 +93,30 @@ class ProductDetailView extends StatelessWidget {
                           Expanded(
                             child: Image(
                               image: AssetImage("assets/images/style4.png"),
-                              fit: BoxFit.cover, // Good practice for images
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ]
                       ),
-                      //
-                      // // 3. Image Thumbnails
-                      // // _buildThumbnailRow(imagePath),
+
+                      // _buildThumbnailRow(imagePath),
 
                       const SizedBox(height: 25),
 
-                      // 4. Size Selector (Reactive)
+                      // Size Selector
                       _buildSizeSelector(controller),
 
                       const SizedBox(height: 25),
 
-                      // 5. Description
+                      //  Description
                       _buildDescription(),
 
                       const SizedBox(height: 25),
 
-                      // 6. Reviews Section
+                      //  Reviews Section
                       _buildReviewsSection(),
 
-                      const SizedBox(height: 50), // Space for the floating total/button
+                      const SizedBox(height: 50),
 
                       // Row(
                       //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,7 +156,7 @@ class ProductDetailView extends StatelessWidget {
 
 
 
-          // 7. Floating Total Price and Button
+          //  Floating Total Price and Button
           _buildFloatingFooter(controller),
         ],
       ),
@@ -166,7 +165,7 @@ class ProductDetailView extends StatelessWidget {
 
   // --- Widget Builders ---
 
-  // 1. Image Header
+  //  Image Header
   Widget _buildImageHeader(String imagePath) {
     return AspectRatio(
       aspectRatio: 0.9,
@@ -185,7 +184,7 @@ class ProductDetailView extends StatelessWidget {
     );
   }
 
-  // 2. Product Name and Price Row
+  //  Product Name and Price Row
   Widget _buildNamePriceRow(ProductDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,10 +207,10 @@ class ProductDetailView extends StatelessWidget {
           children: [
             const Text(
               'Nike Club Fleece',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800), // Bolder font
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
             ),
             Obx(() => Text(
-              '\$${controller.basePrice.value.toStringAsFixed(0)}', // Display as $120
+              '\$${controller.basePrice.value.toStringAsFixed(0)}',
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
             )),
           ],
@@ -220,14 +219,14 @@ class ProductDetailView extends StatelessWidget {
     );
   }
 
-  // // 3. Image Thumbnails
+   // Image Thumbnails
   Widget _buildThumbnailRow(String imagePath) {
     return SizedBox(
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Thumbnails (Fixed width and border for selection)
+
           for (int i = 0; i < 4; i++)
             Container(
               width: 70,
@@ -236,14 +235,14 @@ class ProductDetailView extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: i == 0 ? Colors.black : Colors.transparent, // Black border for selected
+                  color: i == 0 ? Colors.black : Colors.transparent,
                   width: 1,
                 ),
                 color: Colors.grey.shade100,
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(imagePath, fit: BoxFit.cover), // Placeholder for thumbnails
+                child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
             ),
 
@@ -254,7 +253,7 @@ class ProductDetailView extends StatelessWidget {
     );
   }
 
-  // 4. Size Selector (Reactive)
+  // Size Selector
   Widget _buildSizeSelector(ProductDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -275,10 +274,10 @@ class ProductDetailView extends StatelessWidget {
                   alignment: Alignment.center,
                   margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade100, // Background is always light grey
+                    color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(10),
                     border: controller.selectedSize.value == size
-                        ? Border.all(color: Colors.black, width: 1.5) // Black border for selected
+                        ? Border.all(color: Colors.black, width: 1.5)
                         : null,
                   ),
                   child: Text(
@@ -297,7 +296,7 @@ class ProductDetailView extends StatelessWidget {
     );
   }
 
-  // 5. Description
+  // Description
   Widget _buildDescription() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +321,7 @@ class ProductDetailView extends StatelessWidget {
     );
   }
 
-  // 6. Reviews Section
+
   Widget _buildReviewsSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,13 +341,13 @@ class ProductDetailView extends StatelessWidget {
         ),
         const SizedBox(height: 15),
 
-        // Single Review Card (Replicating the visual details)
+        // Single Review Card
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CircleAvatar(
               radius: 20,
-              backgroundColor: Colors.grey, // Placeholder for profile image
+              backgroundColor: Colors.grey,
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -394,9 +393,9 @@ class ProductDetailView extends StatelessWidget {
     );
   }
 
-  // 7. Floating Footer (Total Price and Button)
+  //  Floating Footer
   Widget _buildFloatingFooter(ProductDetailController controller) {
-    // The purple color from the image is approximately #9C27B0
+
     const Color purpleColor = Color(0xFF9C27B0);
 
     return Positioned(
@@ -404,7 +403,7 @@ class ProductDetailView extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        height: 130, // Fixed height for a distinct footer
+        height: 130,
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -434,7 +433,7 @@ class ProductDetailView extends StatelessWidget {
                 )),
                 // Total Price Column
 
-                // Add to Cart Button (Reactive)
+
 
               ],
             ),

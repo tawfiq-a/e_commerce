@@ -1,11 +1,11 @@
-// lib/controllers/add_card_controller.dart
+
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class AddCardController extends GetxController {
   // --- Payment Method Selection State ---
-  final selectedMethod = 'card'.obs; // 'card', 'paypal', or 'bank'
+  final selectedMethod = 'card'.obs;
 
   void selectMethod(String method) {
     selectedMethod.value = method;
@@ -17,11 +17,10 @@ class AddCardController extends GetxController {
   final expDate = ''.obs;
   final cvv = ''.obs;
 
-  // You would typically link these to TextEditingControllers in the view,
-  // but for simple state management, we'll store the values here.
+
 
   void addCard() {
-    // 1. Basic Validation (e.g., check if fields are not empty)
+    // Basic Validation
     if (cardOwner.isEmpty || cardNumber.isEmpty || expDate.isEmpty || cvv.isEmpty) {
       Get.snackbar(
         'Error',
@@ -31,12 +30,12 @@ class AddCardController extends GetxController {
       return;
     }
 
-    // 2. Process the data (e.g., call an API to save the card)
+    // Process the data
     print('Selected Method: ${selectedMethod.value}');
     print('Card Owner: ${cardOwner.value}');
     print('Card Number: ${cardNumber.value}');
 
-    // 3. Show success message and navigate back
+    // Show success message and navigate back
     Get.snackbar(
       'Success!',
       'New card added successfully.',

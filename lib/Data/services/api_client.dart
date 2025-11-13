@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:http/http.dart' as http;
 
-
 import '../../helpers/prefs_helpers.dart';
 import '../models/error_response.dart';
 import '../utils/api_constants.dart';
@@ -21,22 +20,27 @@ class ApiClient extends GetxService {
 
   static String bearerToken = "";
 
-  static Future<Response> getData(String uri,
-      {Map<String, dynamic>? query, Map<String, String>? headers}) async {
+  //=======Get request===//
+
+  static Future<Response> getData(
+    String uri, {
+    Map<String, dynamic>? query,
+    Map<String, String>? headers,
+  }) async {
     bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
 
     var mainHeaders = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $bearerToken'
+      'Authorization': 'Bearer $bearerToken',
     };
     try {
       debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
 
       http.Response response = await client
           .get(
-        Uri.parse(ApiConstant.baseUrl + uri),
-        headers: headers ?? mainHeaders,
-      )
+            Uri.parse(ApiConstant.baseUrl + uri),
+            headers: headers ?? mainHeaders,
+          )
           .timeout(const Duration(seconds: timeoutInSeconds));
       return handleResponse(response, uri);
     } catch (e) {
@@ -45,14 +49,19 @@ class ApiClient extends GetxService {
     }
   }
 
-  static Future<Response> postData(String uri, dynamic body,
-      {Map<String, String>? headers}) async {
+  //======<post Request====>//
+
+  static Future<Response> postData(
+    String uri,
+    dynamic body, {
+    Map<String, String>? headers,
+  }) async {
     bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
 
     var mainHeaders = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $bearerToken'
+      'Authorization': 'Bearer $bearerToken',
     };
     try {
       debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
@@ -60,13 +69,14 @@ class ApiClient extends GetxService {
 
       http.Response response = await client
           .post(
-        Uri.parse(ApiConstant.baseUrl + uri),
-        body: body,
-        headers: headers ?? mainHeaders,
-      )
+            Uri.parse(ApiConstant.baseUrl + uri),
+            body: body,
+            headers: headers ?? mainHeaders,
+          )
           .timeout(const Duration(seconds: timeoutInSeconds));
       debugPrint(
-          "==========> Response Post Method :------ : ${response.statusCode}");
+        "==========> Response Post Method :------ : ${response.statusCode}",
+      );
       return handleResponse(response, uri);
     } catch (e) {
       return const Response(statusCode: 1, statusText: noInternetMessage);
@@ -74,44 +84,51 @@ class ApiClient extends GetxService {
   }
 
   static Future<Response> postMultipartData(
-      String uri, Map<String, String> body,
-      {required List<MultipartBody> multipartBody,
-        Map<String, String>? headers}) async {
+    String uri,
+    Map<String, String> body, {
+    required List<MultipartBody> multipartBody,
+    Map<String, String>? headers,
+  }) async {
     try {
       bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
 
       var mainHeaders = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer $bearerToken'
+        'Authorization': 'Bearer $bearerToken',
       };
 
       debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
       debugPrint('====> API Body: $body with ${multipartBody.length} picture');
-      var request =
-      http.MultipartRequest('POST', Uri.parse(ApiConstant.baseUrl + uri));
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(ApiConstant.baseUrl + uri),
+      );
       request.headers.addAll(headers ?? mainHeaders);
       for (MultipartBody element in multipartBody) {
-        request.files.add(await http.MultipartFile.fromPath(
-          element.key,
-          element.file.path,
-        ));
+        request.files.add(
+          await http.MultipartFile.fromPath(element.key, element.file.path),
+        );
       }
       request.fields.addAll(body);
-      http.Response _response =
-      await http.Response.fromStream(await request.send());
+      http.Response _response = await http.Response.fromStream(
+        await request.send(),
+      );
       return handleResponse(_response, uri);
     } catch (e) {
       return const Response(statusCode: 1, statusText: noInternetMessage);
     }
   }
 
-  Future<Response> putData(String uri, dynamic body,
-      {Map<String, String>? headers}) async {
+  Future<Response> putData(
+    String uri,
+    dynamic body, {
+    Map<String, String>? headers,
+  }) async {
     bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
 
     var mainHeaders = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer $bearerToken'
+      'Authorization': 'Bearer $bearerToken',
     };
     try {
       debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
@@ -119,10 +136,10 @@ class ApiClient extends GetxService {
 
       http.Response response = await http
           .put(
-        Uri.parse(ApiConstant.baseUrl + uri),
-        body: jsonEncode(body),
-        headers: headers ?? mainHeaders,
-      )
+            Uri.parse(ApiConstant.baseUrl + uri),
+            body: jsonEncode(body),
+            headers: headers ?? mainHeaders,
+          )
           .timeout(const Duration(seconds: timeoutInSeconds));
       return handleResponse(response, uri);
     } catch (e) {
@@ -130,55 +147,66 @@ class ApiClient extends GetxService {
     }
   }
 
-  static Future<Response> putMultipartData(String uri, Map<String, String> body,
-      {required List<MultipartBody> multipartBody,
-        Map<String, String>? headers}) async {
+  static Future<Response> putMultipartData(
+    String uri,
+    Map<String, String> body, {
+    required List<MultipartBody> multipartBody,
+    Map<String, String>? headers,
+  }) async {
     try {
       bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
 
       var mainHeaders = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer $bearerToken'
+        'Authorization': 'Bearer $bearerToken',
       };
       debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
       debugPrint('====> API Body: $body with ${multipartBody.length} picture');
-      var request =
-      http.MultipartRequest('POST', Uri.parse(ApiConstant.baseUrl + uri));
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(ApiConstant.baseUrl + uri),
+      );
       request.headers.addAll(headers ?? mainHeaders);
       for (MultipartBody element in multipartBody) {
         for (MultipartBody element in multipartBody) {
-          request.files.add(await http.MultipartFile.fromPath(
-            element.key,
-            element.file.path,
-          ));
+          request.files.add(
+            await http.MultipartFile.fromPath(element.key, element.file.path),
+          );
         }
       }
 
       request.fields.addAll(body);
 
-      http.Response response =
-      await http.Response.fromStream(await request.send());
+      http.Response response = await http.Response.fromStream(
+        await request.send(),
+      );
       return handleResponse(response, uri);
     } catch (e) {
       return const Response(statusCode: 1, statusText: noInternetMessage);
     }
   }
 
-  static Future<Response> deleteData(String uri,
-      {Map<String, String>? headers, dynamic body}) async {
+  static Future<Response> deleteData(
+    String uri, {
+    Map<String, String>? headers,
+    dynamic body,
+  }) async {
     bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
 
     var mainHeaders = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer $bearerToken'
+      'Authorization': 'Bearer $bearerToken',
     };
     try {
       debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
       debugPrint('====> API Call: $uri\n Body: ${body}');
 
       http.Response response = await http
-          .delete(Uri.parse(ApiConstant.baseUrl + uri),
-          headers: headers ?? mainHeaders, body: body)
+          .delete(
+            Uri.parse(ApiConstant.baseUrl + uri),
+            headers: headers ?? mainHeaders,
+            body: body,
+          )
           .timeout(const Duration(seconds: timeoutInSeconds));
       return handleResponse(response, uri);
     } catch (e) {
@@ -198,9 +226,10 @@ class ApiClient extends GetxService {
       body: body ?? response.body,
       bodyString: response.body.toString(),
       request: Request(
-          headers: response.request!.headers,
-          method: response.request!.method,
-          url: response.request!.url),
+        headers: response.request!.headers,
+        method: response.request!.method,
+        url: response.request!.url,
+      ),
       headers: response.headers,
       statusCode: response.statusCode,
       statusText: response.reasonPhrase,
@@ -214,9 +243,10 @@ class ApiClient extends GetxService {
 
       debugPrint("${errorResponse.statusCode}");
       response0 = Response(
-          statusCode: response0.statusCode,
-          body: response0.body,
-          statusText: errorResponse.message);
+        statusCode: response0.statusCode,
+        body: response0.body,
+        statusText: errorResponse.message,
+      );
 
       // if(_response.body.toString().startsWith('{errors: [{code:')) {
       //   ErrorResponse _errorResponse = ErrorResponse.fromJson(_response.body);
@@ -230,18 +260,20 @@ class ApiClient extends GetxService {
       // );
     } else if (response0.statusCode != 200 && response0.body == null) {
       response0 = const Response(statusCode: 0, statusText: noInternetMessage);
-    }else if(response0.body["success"]==false){
+    } else if (response0.body["success"] == false) {
       response0 = Response(
-          statusCode: response0.statusCode,
-          body: response0.body,
-          statusText:response0.body['message'] );
+        statusCode: response0.statusCode,
+        body: response0.body,
+        statusText: response0.body['message'],
+      );
       debugPrint(
-          '====> API Error Response: [${response0.statusCode}] $uri\n${response0.statusText}');
-
+        '====> API Error Response: [${response0.statusCode}] $uri\n${response0.statusText}',
+      );
     }
 
     debugPrint(
-        '====> API Response: [${response0.statusCode}] $uri\n${response0.body}');
+      '====> API Response: [${response0.statusCode}] $uri\n${response0.body}',
+    );
     // log.e("Handle Response error} ");
     return response0;
   }

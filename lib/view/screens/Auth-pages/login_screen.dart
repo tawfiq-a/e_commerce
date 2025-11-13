@@ -54,6 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(_userCtrl.text!=v){
                       return "User Not Found";
                     }
+                    if(v==null || v.isEmpty){
+                      return "Enter your username";
+                    }
                     return null;
 
                   },
@@ -67,6 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   validator: (v){
                     if(_passCtrl.text!=v){
                       return "Password is Invalid";
+                    }
+                    if(v==null || v.isEmpty){
+                      return "Enter your password";
                     }
                     return null;
 
@@ -126,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         recognizer:
                             TapGestureRecognizer()
                               ..onTap = () {
-                                Get.offAllNamed("/sign_up");
+                                Get.toNamed("/sign_up");
                               },
                       ),
                     ],

@@ -9,13 +9,13 @@ class ReviewsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Instantiate Controller
+
     final controller = Get.put(ReviewsController());
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        // Custom App Bar to match the image style (centered title, back button)
+
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Get.back(),
@@ -39,7 +39,7 @@ class ReviewsView extends StatelessWidget {
 
         return Column(
           children: [
-            // Header Row (Review Count + Add Review Button)
+            // Header Row
             _buildHeaderRow(controller),
 
             // Separator
@@ -64,7 +64,7 @@ class ReviewsView extends StatelessWidget {
   // --- Widget Builders ---
 
   Widget _buildHeaderRow(ReviewsController controller) {
-    // Purple/Orange color from the image button
+
     const Color buttonColor = Color(0xFFFF7D48);
 
     return Padding(
@@ -72,7 +72,7 @@ class ReviewsView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // 245 Reviews + Stars
+
           Obx(() => Row(
             children: [
               Text(
@@ -80,7 +80,7 @@ class ReviewsView extends StatelessWidget {
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(width: 8),
-              _buildStarRating(4.5, size: 16), // Overall rating placeholder
+              _buildStarRating(4.5, size: 16),
             ],
           )),
 
@@ -115,9 +115,9 @@ class ReviewsView extends StatelessWidget {
               // Avatar
               CircleAvatar(
                 radius: 20,
-                // Replace with actual asset image path if available
+
                 backgroundColor: Colors.grey.shade300,
-                // backgroundImage: AssetImage(review.avatarPath),
+
               ),
               const SizedBox(width: 10),
 
@@ -144,7 +144,7 @@ class ReviewsView extends StatelessWidget {
                 ),
               ),
 
-              // Rating (Right Side)
+              // Rating
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -160,7 +160,7 @@ class ReviewsView extends StatelessWidget {
 
           const SizedBox(height: 10),
 
-          // Review Content
+
           Text(
             review.content,
             style: TextStyle(fontSize: 15, color: Colors.grey.shade700, height: 1.4),

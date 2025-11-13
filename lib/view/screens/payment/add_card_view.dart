@@ -49,7 +49,7 @@ class AddCardView extends StatelessWidget {
                   _CustomTextField(
                     hintText: 'Mrh Raju',
                     keyboardType: TextInputType.name,
-                    onChanged: controller.cardOwner, // Link to RxString
+                    onChanged: controller.cardOwner,
                   ),
 
                   const SizedBox(height: 20),
@@ -68,7 +68,7 @@ class AddCardView extends StatelessWidget {
 
                   const SizedBox(height: 20),
 
-                  // --- EXP and CVV Inputs (Side-by-side) ---
+                  // --- EXP and CVV Inputs ---
                   Row(
                     children: [
                       Expanded(
@@ -114,7 +114,7 @@ class AddCardView extends StatelessWidget {
             ),
           ),
 
-          // --- Add Card Button (Fixed at the bottom) ---
+          // --- Add Card Button
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: SizedBox(
@@ -197,7 +197,7 @@ class _MethodChip extends StatelessWidget {
       return GestureDetector(
         onTap: () => controller.selectMethod(value),
         child: Container(
-          width: 90, // Fixed width for alignment
+          width: 90,
           height: 60,
           decoration: BoxDecoration(
             color: isSelected ? color.withOpacity(0.1) : const Color(0xFFF5F5F8),

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/add_review_controller.dart';
-// import 'add_review_controller.dart';
+
 
 class AddReview extends StatelessWidget {
   const AddReview({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Instantiate Controller
+
     final controller = Get.put(AddReviewController());
 
-    // The purple color used in the image's button and slider
+
     const Color purpleColor = Color(0xFF9C27B0);
 
     return Scaffold(
@@ -39,7 +39,7 @@ class AddReview extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- 1. Name Input ---
+            // --- Name Input ---
             const Text('Name', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
             const SizedBox(height: 10),
             _buildInputField(
@@ -50,7 +50,7 @@ class AddReview extends StatelessWidget {
 
             const SizedBox(height: 25),
 
-            // --- 2. Experience Input (Large Text Area) ---
+            // ---  Experience Input  ---
             const Text('How was your experience ?', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
             const SizedBox(height: 10),
             _buildInputField(
@@ -62,12 +62,12 @@ class AddReview extends StatelessWidget {
 
             const SizedBox(height: 35),
 
-            // --- 3. Star Rating Slider ---
+            // ---  Star Rating Slider ---
             _buildRatingSlider(controller, purpleColor),
 
             const SizedBox(height: 80),
 
-            // --- 4. Submit Button (Reactive) ---
+            // ---  Submit Button (Reactive) ---
             Obx(() => ElevatedButton(
               onPressed: controller.isLoading.value ? null : controller.submitReview,
               style: ElevatedButton.styleFrom(
@@ -137,7 +137,7 @@ class AddReview extends StatelessWidget {
                 value: controller.rating.value,
                 min: 0.0,
                 max: 5.0,
-                divisions: 10, // Allows steps of 0.5
+                divisions: 10,
                 activeColor: sliderColor,
                 inactiveColor: Colors.grey.shade300,
                 onChanged: controller.updateRating,
